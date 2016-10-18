@@ -11,20 +11,12 @@
 </template>
 
 <script>
+import Store from './store.js'
 export default {
   data: function () {
     return {
       title: 'Hello world!',
-      items: [
-        {
-          label: 'coding',
-          isfinshed: false
-        },
-        {
-          label: 'walking',
-          isfinshed: true
-        }
-      ],
+      items: [], 
       newItem: ''
     }
   },
@@ -33,11 +25,14 @@ export default {
       item.isfinshed = !item.isfinshed
     },
     addNew: function () {
-      console.log(this.newItem)
+      this.items.push({
+        label: this.newItem,
+        isfinshed: false
+      })
       this.newItem = ''
     }
   },
-  wahrch: {
+  watch: {
     items: {
       handler: function (val, oldVal) {
         console.log(val, oldVal)
